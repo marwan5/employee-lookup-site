@@ -14,7 +14,7 @@ limiter = Limiter(get_remote_address, app=app, default_limits=["60 per hour"])
 GOOGLE_SHEET_ID = os.environ.get(
     "GOOGLE_SHEET_ID", "1yo-EQ1oy4JhMgYDu_Nk9ifsu7I0OFVNe"
 )
-SHEET_GID = os.environ.get("SHEET_GID", "0")
+SHEET_GID = os.environ.get("SHEET_GID", "1245481873")
 SHEET_CSV_URL = os.environ.get(
     "SHEET_CSV_URL",
     f"https://docs.google.com/spreadsheets/d/{GOOGLE_SHEET_ID}/export?format=csv&gid={SHEET_GID}",
