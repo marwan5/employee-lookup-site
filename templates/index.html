@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>نظام الاستعلام عن بيانات الموظفين</title>
+<style>
+:root{--ink:#18324b;--blue:#145da0;--bg:#f3f6fa}
+*{box-sizing:border-box}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:#243447}
+header{background:linear-gradient(120deg,#123c63,#1769aa);color:white;padding:30px 16px}
+header .wrap,main{max-width:850px;margin:auto}h1{margin:0 0 8px;font-size:clamp(22px,4vw,32px)}header p{margin:0;opacity:.9}
+main{padding:28px 16px 48px}.card{background:white;border-radius:16px;padding:24px;box-shadow:0 8px 28px #17324d12;margin-bottom:18px}
+label{display:block;font-weight:bold;margin-bottom:10px}.search-row{display:flex;gap:10px}
+input{flex:1;min-width:0;padding:14px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px}
+button{border:0;border-radius:10px;padding:0 24px;color:white;background:var(--blue);font-size:16px;font-weight:bold;cursor:pointer}
+button:hover{background:#0f4b83}.message{margin-top:18px;padding:14px;border-radius:10px;background:#fff4df;color:#744b00}
+.result-title{margin-top:0;color:var(--ink)}dl{display:grid;grid-template-columns:minmax(130px,1fr) 2fr;margin:0}
+dt,dd{margin:0;padding:13px 10px;border-bottom:1px solid #e8edf3;overflow-wrap:anywhere}dt{font-weight:bold;color:#4a6075}dd{color:#172b3d}
+.notice{color:#64748b;font-size:13px;line-height:1.8}footer{text-align:center;padding:0 16px 26px;color:#64748b;font-size:12px}
+@media(max-width:520px){.card{padding:18px}.search-row{flex-direction:column}button{padding:14px}dl{grid-template-columns:1fr}dt{padding-bottom:2px;border-bottom:0}dd{padding-top:4px}}
+</style></head>
+<body>
+<header><div class="wrap"><h1>نظام الاستعلام عن بيانات الموظفين</h1>
+<p>أدخل الرقم الوطني للبحث عن البيانات الوظيفية المتاحة.</p></div></header>
+<main><section class="card">
+<form method="get" action="/" autocomplete="off">
+<label for="national_id">الرقم الوطني</label><div class="search-row">
+<input id="national_id" name="national_id" inputmode="numeric" pattern="[0-9]{5,20}" maxlength="20" required value="{{ national_id }}" placeholder="أدخل الرقم الوطني">
+<button type="submit">بحث</button></div></form>
+{% if message %}<div class="message" role="status">{{ message }}</div>{% endif %}
+</section>
+{% if result %}<section class="card" aria-live="polite"><h2 class="result-title">نتيجة البحث</h2><dl>
+{% for label, value in result %}<dt>{{ label }}</dt><dd>{{ value }}</dd>{% endfor %}
+</dl></section>{% endif %}
+<p class="notice">تعرض الصفحة الحقول العامة المحددة فقط. تأكد من اعتماد الجهة المسؤولة لنشر هذه المعلومات.</p>
+</main><footer>نظام الاستعلام عن بيانات الموظفين</footer></body></html>
